@@ -1,0 +1,62 @@
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+RAW_DATASET_PATH = PROJECT_ROOT / "data" / "raw_dataset"
+CROPPED_DATASET_PATH = PROJECT_ROOT / "data" / "cropped_dataset"
+TRAIN_DATASET_PATH = PROJECT_ROOT / "data" / "train_set"
+TEST_DATASET_PATH = PROJECT_ROOT / "data" / "test_set"
+
+CHECKPOINTS_DIR = PROJECT_ROOT / "checkpoints"
+OUTPUTS_DIR = PROJECT_ROOT / "outputs"
+LOG_DIR = OUTPUTS_DIR / "logs"
+CSV_DIR = OUTPUTS_DIR / "csv"
+PREDICTIONS_DIR = OUTPUTS_DIR / "predictions"
+
+for dir_path in [
+    RAW_DATASET_PATH, CROPPED_DATASET_PATH, TRAIN_DATASET_PATH, TEST_DATASET_PATH,
+    CHECKPOINTS_DIR, LOG_DIR, CSV_DIR, PREDICTIONS_DIR
+]:
+    dir_path.mkdir(parents=True, exist_ok=True)
+
+MM_TO_PIXEL = 1
+CROP_MM = 30
+BLACK_THRESH = 10
+MIN_CORRECT_ANGLE = 0.15
+MAX_CORRECT_ANGLE = 12
+DEBUG_MODE = True
+SUPPORT_FORMATS = {".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff"}
+
+TRAIN_SIZE = 702
+TEST_SIZE = 100
+RANDOM_SEED = 42
+SCORE_BIN_EDGES = [50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+SCORE_BIN_LABELS = ["50-55", "55-60", "60-65", "65-70", "70-75", "75-80", "80-85", "85-90", "90-95"]
+
+IMG_HEIGHT = 850
+IMG_WIDTH = 2000
+MAX_SCORE = 100
+NUM_PATCHES = 4
+
+BATCH_SIZE = 2
+EPOCHS = 60
+ACCUM_STEPS = 1
+LEARNING_RATE = 3e-4
+LEARNING_RATE_BACKBONE = 3e-5
+WEIGHT_DECAY = 1e-4
+WARMUP_EPOCHS = 5
+SEED = 42
+
+LOW_SCORE_THRESHOLD = 65.0
+MID_SCORE_LOW = 75.0
+MID_SCORE_HIGH = 85.0
+HIGH_SCORE_THRESHOLD = 85.0
+LOW_SCORE_BOOST = 2.2
+MID_SCORE_BOOST = 1.8
+HIGH_SCORE_BOOST = 2.0
+USE_DIFF_AUG = True
+
+EARLY_STOP_PATIENCE = 15
+
+MODEL_SAVE_NAME = "best_glass_model_EfficientNetB0_v6_cropped.pth"
+EMA_MODEL_SAVE_NAME = "best_ema_glass_model_EfficientNetB0_v6_cropped.pth"
